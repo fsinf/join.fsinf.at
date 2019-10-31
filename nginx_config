@@ -2,7 +2,6 @@ server {
 	listen 80;
 	server_name join.fsinf.at;
 	root /srv/join.fsinf.at;
-	index index.html;
 
 	location = /api/users {
 		proxy_set_header X-Real-IP $remote_addr;
@@ -14,7 +13,8 @@ server {
 		proxy_redirect off;
 	}
 
-	location = /index.html {
+	location / {
+		try_files /index.html =404;
 	}
 
 	location ~ ^/.+$ {
