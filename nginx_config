@@ -1,7 +1,7 @@
 server {
 	listen 80;
-	server_name join.fsinf.at;
-	root /srv/join.fsinf.at;
+	server_name mm.fsinf.at;
+	root /srv/mm.fsinf.at;
 
 	location = /api/users {
 		proxy_set_header X-Real-IP $remote_addr;
@@ -18,6 +18,6 @@ server {
 	}
 
 	location ~ ^/.+$ {
-		return 301 /;
+		return 301 https://mattermost.fsinf.at$request_uri;
 	}
 }
