@@ -3,6 +3,12 @@ server {
 	server_name mm.fsinf.at;
 	root /srv/mm.fsinf.at;
 
+	# show registration form
+	location = / {
+		try_files /index.html =404;
+	}
+
+	# needed for registration form, proxy circumvents Same-Origin Policy
 	location = /api/users {
 		proxy_set_header X-Real-IP $remote_addr;
 		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -13,11 +19,26 @@ server {
 		proxy_redirect off;
 	}
 
-	location / {
-		try_files /index.html =404;
+	# make legacy mm.fsinf.at links still work
+	location ~ ^/(w-inf-tuwien|fsinf|fsinf-intern)/.+$ {
+		return 301 https://mattermost.fsinf.at$request_uri;
 	}
 
-	location ~ ^/.+$ {
+	# Unfortunately the app does not support redirection
+	# but we want to show a better error message than "Cannot connect"
+	# The app firstly pings and then requests license.
+	location ~ ^/api/v4/(system/ping|license/client)$ {
 		return 301 https://mattermost.fsinf.at$request_uri;
+	}
+
+	# Now we tell the app user to use mattermost.fsinf.at
+	location /api/v4/config/client {
+		try_files /config.json =404;
+		return 200 '{"SiteName": "Please go back and use mattermost.fsinf.at, mm.fsinf.at does not work anymore."}';
+	}
+
+	# for everything else redirect back to index
+	location / {
+		return 301 /;
 	}
 }
