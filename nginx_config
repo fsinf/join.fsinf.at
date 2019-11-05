@@ -33,7 +33,6 @@ server {
 
 	# Now we tell the app user to use mattermost.fsinf.at
 	location /api/v4/config/client {
-		try_files /config.json =404;
 		return 200 '{"SiteName": "Please go back and use mattermost.fsinf.at, mm.fsinf.at does not work anymore."}';
 	}
 
