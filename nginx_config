@@ -15,7 +15,6 @@ server {
 		proxy_set_header X-NginX-Proxy true;
 		proxy_pass https://mattermost.fsinf.at/api/v4/users;
 		proxy_ssl_session_reuse off;
-		proxy_set_header Host $http_host;
 		proxy_redirect off;
 	}
 
