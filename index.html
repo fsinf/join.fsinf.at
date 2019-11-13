@@ -35,6 +35,31 @@ h1 { color: #166de0; }
 @media only screen and (max-width: 500px) {
 	#logo { background: none; }
 }
+.hint {
+	position: relative;
+	width: 1em;
+	text-align: center;
+	font-weight: normal;
+	float: right;
+	background: #ececec;
+	color: #555;
+	cursor: default;
+}
+.hint p {
+	display: none;
+	position: absolute;
+	right: 0;
+	width: 200px;
+	background: white;
+	top: 10px;
+	text-align: left;
+	box-shadow: 10px 10px 10px #0002;
+	padding: 0.5em;
+	font-size: 0.9em;
+	z-index: 1;
+	color: black;
+}
+.hint:hover p { display: block }
 </style>
 </head>
 <body>
@@ -45,8 +70,12 @@ h1 { color: #166de0; }
 Already have an account? <a href="https://mattermost.fsinf.at/">Log in</a>.
 <div id=logo>
 <form id=form>
+<span class=hint>?<p>Steht auf deiner TUCard. Wird anderen Usern nicht angezeigt.</p></span>
 <label for=matrikel>Matrikelnummer</label> <input id=matrikel required minlength=7 maxlength=8 pattern="[0-9]+" size=8 />
+
 <label for=username>Username</label> <input id=username required />
+
+<span class=hint>?<p>Bitte verwende ein neues Passwort.</p></span>
 <label for=password>Passwort</label> <input id=password type=password required />
 
 <button>Sign up</button>
