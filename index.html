@@ -30,6 +30,9 @@ button {
 	border-bottom: 5px solid #218227;
 	border-radius: 3px;
 }
+input[type=number]{
+	-moz-appearance:textfield;
+}
 button:active { border: 0; margin-top: 5px; }
 form { margin: 1em; }
 h1 { color: #166de0; }
@@ -68,7 +71,7 @@ h1 { color: #166de0; }
 Already have an account? <a href="https://mattermost.fsinf.at/">Log in</a>.
 <form id=form>
 <span class=hint>?<p>Steht auf deiner TUCard. Wird anderen Usern nicht angezeigt.</p></span>
-<label for=matrikel>Matrikelnummer</label> <input id=matrikel required minlength=7 maxlength=8 pattern="[0-9]+" size=8 />
+<label for=matrikel>Matrikelnummer</label> <input id=matrikel type=number required max=99999999 size=8 />
 
 <label for=username>Username</label> <input id=username required />
 
