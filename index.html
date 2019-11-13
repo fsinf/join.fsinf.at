@@ -5,11 +5,11 @@
 <title>Join Mattermost.fsinf.at!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://mm.fsinf.at/">
+<link rel="icon" type="image/png" href="https://mattermost.fsinf.at/static/images/favicon/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="https://mattermost.fsinf.at/static/images/favicon/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://mattermost.fsinf.at/static/images/favicon/favicon-96x96.png" sizes="96x96">
 <style>
-body { font-family: sans-serif; max-width: 70ch; padding: 2ch; margin: auto; }
-#logo {
-	background: url('data:image/svg+xml;utf8,<svg width="200" fill="rgb(100,149,237)" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="m243.747 73.364c-8.454-18.258-20.692-33.617-36.9-46.516.432 8.756 1.374 27.484 1.374 27.484s1.01 1.327 1.42 1.901c16.38 22.876 22.365 48.231 16.91 75.771-10.94 55.222-64.772 88.91-119.325 75.138-47.892-12.091-79.878-61.06-70.82-109.609 7.15-38.327 29.801-63.859 66.584-76.833l1.333-.504 1.046-.774c4.458-6.304 8.808-12.685 13.45-19.422-55.749 2.762-111.816 47.488-118.239 115.522-6.216 65.832 38.17 124.541 101.596 137.424 66.096 13.425 129.017-25.57 148.031-87.976 9.508-31.206 7.283-61.924-6.46-91.606zm-157.31 41.172c2.787 26.487 25.745 44.538 52.302 41.603 26.092-2.884 45.166-28.409 40.227-54.232-3.85-20.134-8.105-40.19-12.188-60.279-1.689-8.313-3.398-16.623-5.19-25.391-.707.621-1.035.883-1.334 1.176-8.94 8.764-17.875 17.533-26.815 26.297-10.886 10.673-21.757 21.36-32.669 32.006-10.944 10.677-15.926 23.707-14.334 38.82z"/></svg>') no-repeat 80% center;
-}
+body { font-family: sans-serif; max-width: 60ch; padding: 2ch; margin: auto; }
 input { margin-bottom: 1em; padding: 8px 4px; width: 100%; box-sizing: border-box; }
 label { font-weight: bold; display: block; }
 form { max-width: 200px; }
@@ -28,13 +28,11 @@ button {
 	cursor: pointer;
 	border: 0;
 	border-bottom: 5px solid #218227;
+	border-radius: 3px;
 }
 button:active { border: 0; margin-top: 5px; }
 form { margin: 1em; }
 h1 { color: #166de0; }
-@media only screen and (max-width: 500px) {
-	#logo { background: none; }
-}
 .hint {
 	position: relative;
 	width: 1em;
@@ -63,12 +61,11 @@ h1 { color: #166de0; }
 </style>
 </head>
 <body>
-	<h1>mattermost<small>.fsinf.at</small></h1>
-	<p id=tagline>Deine Chat-Plattform fürs Informatik-Studium an der TU Wien!</p>
+	<h1>Join mattermost<small>.fsinf.at</small>!</h1>
+	<p id=tagline>Deine Chat-Plattform fürs Informatik-Studium an der TU Wien.</p>
 <noscript><div class=error>Diese Seite und Mattermost erfordern JavaScript.</div></noscript>
 <div id=error class=error></div>
 Already have an account? <a href="https://mattermost.fsinf.at/">Log in</a>.
-<div id=logo>
 <form id=form>
 <span class=hint>?<p>Steht auf deiner TUCard. Wird anderen Usern nicht angezeigt.</p></span>
 <label for=matrikel>Matrikelnummer</label> <input id=matrikel required minlength=7 maxlength=8 pattern="[0-9]+" size=8 />
@@ -79,7 +76,7 @@ Already have an account? <a href="https://mattermost.fsinf.at/">Log in</a>.
 <label for=password>Passwort</label> <input id=password type=password required />
 
 <button>Sign up</button>
-</form></div>
+</form>
 <small>By proceeding, you agree to our
 <a href="https://wiki.fsinf.at/wiki/Mattermost">Terms of Service</a> and
 <a href="https://www.fsinf.at/datenschutz">Privacy Policy</a>.</small>
