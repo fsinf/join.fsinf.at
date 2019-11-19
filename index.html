@@ -65,30 +65,30 @@ h1 { color: #166de0; }
 </head>
 <body>
 	<h1>Join mattermost<small>.fsinf.at</small>!</h1>
-	<p id=tagline>Deine Chat-Plattform fürs Informatik-Studium an der TU Wien.</p>
-<noscript><div class=error>Diese Seite und Mattermost erfordern JavaScript.</div></noscript>
+	<p id=tagline>Your chat platform for your informatics studies at TU Wien.</p>
+<noscript><div class=error>This site and Mattermost require JavaScript.</div></noscript>
 <div id=error class=error></div>
 Already have an account? <a href="https://mattermost.fsinf.at/">Log in</a>.
 <form id=form>
-<div class=hint>?<p>Steht auf deiner TUCard. Wird anderen Usern nicht angezeigt.</p></div>
-<label for=matrikel>Matrikelnummer</label> <input id=matrikel type=number required min=1 max=99999999 />
+<div class=hint>?<p>Can be found on your TUCard. Is not shown to other users.</p></div>
+<label for=matrikel>Matriculation number</label> <input id=matrikel type=number required min=1 max=99999999 />
 
 <label for=username>Username</label> <input id=username required />
 
-<div class=hint>?<p>Bitte verwende ein neues Passwort.</p></div>
-<label for=password>Passwort</label> <input id=password type=password required />
+<div class=hint>?<p>Please use a new password.</p></div>
+<label for=password>Password</label> <input id=password type=password required />
 
 <button>Sign up</button>
 </form>
 <small>By proceeding, you agree to our
 <a href="https://wiki.fsinf.at/wiki/Mattermost">Terms of Service</a> and
 <a href="https://www.fsinf.at/datenschutz">Privacy Policy</a>.</small>
-<footer>Ein Service deiner <a href="https://www.fsinf.at/">Fachschaft Informatik</a>.</footer>
+<footer>A service of your <a href="https://www.fsinf.at/">Fachschaft Informatik</a>.</footer>
 <script>
 let form = document.getElementById('form');
 let errorDiv = document.getElementById('error');
 if (!window.fetch) {
-	errorDiv.textContent = 'Dein Browser unterstützt kein fetch(). Bitte installiere einen aktuellen Browser, wie etwa Firefox.';
+	errorDiv.textContent = 'Your browser does not support fetch(). Please install a new browser, like Firefox.';
 }
 form.addEventListener("submit", async function(e){
 	e.preventDefault();
@@ -111,8 +111,8 @@ form.addEventListener("submit", async function(e){
 		let error = await response.json();
 		errorDiv.textContent = error.message;
 	} else if (response.status == 201){
-		form.outerHTML = '<div id=success>Dein Account wurde erfolgreich erstellt! Bitte bestätige unsere Email an ' + email + '.<br>'
-		+'Falls du dir diesen Email-Account noch nicht eingerichtet hast, <a href="https://mail.student.tuwien.ac.at/webmail/">melde dich zur Webmail</a> mit Usernamen '+user+ ' und deinem TU-Passwort an.</div>';
+		form.outerHTML = '<div id=success>Your account has created! Please confirm our email to ' + email + '.<br>'
+		+'If you haven\'t yet configured your email client, <a href="https://mail.student.tuwien.ac.at/webmail/">log in to Webmail</a> with username '+user+ ' and your TU password.</div>';
 	}
 }, false);
 </script>
