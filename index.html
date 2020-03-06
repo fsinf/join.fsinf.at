@@ -30,8 +30,15 @@ button {
 	border-bottom: 5px solid #218227;
 	border-radius: 3px;
 }
+/* Firefox */
 input[type=number]{
 	-moz-appearance:textfield;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 button:active { border: 0; margin-top: 5px; }
 form { margin: 1em; }
