@@ -116,7 +116,11 @@ form.addEventListener("submit", async function(e){
 	});
 	if (response.status == 400){
 		let error = await response.json();
-		errorDiv.textContent = error.message;
+		if (error.id == 'store.sql_user.save.email_exists.app_error'){
+			errorDiv.innerHTML = 'You already have an account, <a href="https://mattermost.fsinf.at/">please log in</a> (if you forgot your password, use the password recovery).';
+		} else {
+			errorDiv.textContent = error.message;
+		}
 	} else if (response.status == 201){
 		form.outerHTML = '<div id=success>Your account has created! Please confirm our email to ' + email + '.<br>'
 		+'If you haven\'t yet configured your email client, <a href="https://mail.student.tuwien.ac.at/webmail/">log in to Webmail</a> with username '+user+ ' and your TU password.</div>';
