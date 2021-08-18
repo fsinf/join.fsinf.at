@@ -13,7 +13,7 @@ body { font-family: sans-serif; max-width: 650px; padding: 20px; margin: auto; }
 input { margin-bottom: 1em; padding: 8px 4px; width: 100%; box-sizing: border-box; }
 input, select { margin-bottom: 1em; }
 label { font-weight: bold; display: block; }
-form { max-width: 200px; }
+form { max-width: 260px; }
 footer { margin-top: 2em; border-top: 1px solid #aaa; padding: 0.5em; font-size: small; }
 #matrikel { letter-spacing: 0.1em; }
 #tagline { font-size: large; }
@@ -21,79 +21,86 @@ footer { margin-top: 2em; border-top: 1px solid #aaa; padding: 0.5em; font-size:
 .error:not(:empty) {background-color: salmon;}
 .error:not(:empty), #success { padding: 5px; margin: 1em 0; border-radius: 5px; }
 .button {
-	text-decoration: none;
-	padding: 0.4em 0.5em;
-	width: 100%;
-	color: white;
-	cursor: pointer;
-	border: 0;
-	border-bottom: 5px solid #4e6b79;
-	border-radius: 3px;
-	background: #8dabd9;
+    text-decoration: none;
+    padding: 0.4em 0.5em;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    border: 0;
+    border-bottom: 5px solid #4e6b79;
+    border-radius: 3px;
+    background: #8dabd9;
 }
 .button[type='submit'] {
-	padding: 0.5em;
-	font-size: 1.3em;
-	background-color: #53b91b;
+    padding: 0.5em;
+    font-size: 1.3em;
+    background-color: #53b91b;
 }
-form[data-role=student] .employee-only { display: none; }
-form[data-role=employee] .student-only { display: none; }
+#viewdata[data-role=student] .employee-only { display: none; }
+#viewdata[data-role=student] .guest-only { display: none; }
+#viewdata[data-role=employee] .student-only { display: none; }
+#viewdata[data-role=employee] .guest-only { display: none; }
+#viewdata[data-role=guest] .student-only { display: none; }
+#viewdata[data-role=guest] .employee-only { display: none; }
 /* Firefox */
 input[type=number]{
-	-moz-appearance:textfield;
+    -moz-appearance:textfield;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 button:active { border: 0; margin-top: 5px; }
-form { margin: 1em; margin-top: 2em; }
+#viewdata { margin: 1em; margin-top: 2em; }
 h1 { color: #166de0; }
 .hint {
-	position: relative;
-	width: 1em;
-	text-align: center;
-	font-weight: normal;
-	float: right;
-	background: #ececec;
-	color: #555;
-	cursor: default;
+    position: relative;
+    width: 1em;
+    text-align: center;
+    font-weight: normal;
+    float: right;
+    background: #ececec;
+    color: #555;
+    cursor: default;
 }
 .hint p {
-	display: none;
-	position: absolute;
-	right: 0;
-	width: 200px;
-	background: white;
-	top: 10px;
-	text-align: left;
-	box-shadow: 10px 10px 10px #0002;
-	padding: 0.5em;
-	font-size: 0.9em;
-	z-index: 1;
-	color: black;
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 200px;
+    background: white;
+    top: 10px;
+    text-align: left;
+    box-shadow: 10px 10px 10px #0002;
+    padding: 0.5em;
+    font-size: 0.9em;
+    z-index: 1;
+    color: black;
 }
 .hint:hover p { display: block }
 </style>
 </head>
 <body>
-	<h1>Join mattermost<small>.fsinf.at</small>!</h1>
-	<p id=tagline>Your chat platform for your informatics studies at TU Wien.</p>
+    <h1>Join mattermost<small>.fsinf.at</small>!</h1>
+    <p id=tagline>Your chat platform for your informatics studies at TU Wien.</p>
 <noscript><div class=error>This site and Mattermost require JavaScript.</div></noscript>
 <div id=error class=error></div>
 Already have an account? <a class=button href="https://mattermost.fsinf.at/">Log in</a>
-<form id=form data-role=student>
+<div id=viewdata data-role=student>
 <div>
-<label>You are a
+<br>
+<label>You are
 <select id=role autocomplete=off>
-	<option>student</option>
-	<option>employee</option>
+    <option value="student">a student</option>
+    <option value="employee">an employee</option>
+    <option value="guest">neither (guest account plz!)</option>
 </select>
 </label>
 </div>
 <div class=student-only>
+<form id=form-student>
 <div class=hint>?<p>Can be found on your TUCard. Is not shown to other students.</p></div>
 <label for=matrikel>Matriculation number</label> <input id=matrikel type=number required min=1 max=99999999 />
 
@@ -103,52 +110,86 @@ Already have an account? <a class=button href="https://mattermost.fsinf.at/">Log
 <label for=password>New password</label> <input id=password type=password required />
 
 <button class=button type=submit>Sign up</button>
+</form>
 </div>
 <div class=employee-only>
-	Please <a href="https://mattermost.fsinf.at/signup_email">sign up here</a> with your @tuwien.ac.at email.
+    Please <a href="https://mattermost.fsinf.at/signup_email">sign up here</a> with your @tuwien.ac.at email.
 </div>
+<div class=guest-only>
+<form id="form-guest">
+<label for=username>eMail address</label> <input id=email type="email" required />
+<p>Guest accounts are very limited and will be deleted after 30 days of inactivity.</p>
+<button class=button type=submit>Get guest account</button>
 </form>
+</div>
 <small>By proceeding, you agree to our
 <a href="https://wiki.fsinf.at/wiki/Mattermost">Terms of Service</a> and
 <a href="https://www.fsinf.at/datenschutz">Privacy Policy</a>.</small>
 <footer>A service of your <a href="https://www.fsinf.at/">Fachschaft Informatik</a>.</footer>
 <script>
-let form = document.getElementById('form');
 let errorDiv = document.getElementById('error');
 if (!window.fetch) {
-	errorDiv.textContent = 'Your browser does not support fetch(). Please install a new browser, like Firefox.';
+    errorDiv.textContent = 'Your browser does not support fetch(). Please install a new browser, like Firefox.';
 }
-document.getElementById('role').addEventListener('change', function (e) {
-	form.dataset.role = e.target.value;
-});
-form.addEventListener("submit", async function(e){
-	e.preventDefault();
-	errorDiv.textContent = '';
 
-	let user = 'e' + document.getElementById('matrikel').value;
-	let email = user + '@student.tuwien.ac.at';
-	let response = await fetch('/api/users', {
-		  method: 'POST',
-		  headers: {
-			      'Content-Type': 'application/json;charset=utf-8'
-			    },
-		body: JSON.stringify({
-			email: email,
-			username: document.getElementById('username').value,
-			password: document.getElementById('password').value
-		})
-	});
-	if (response.status == 400){
-		let error = await response.json();
-		if (error.id == 'store.sql_user.save.email_exists.app_error'){
-			errorDiv.innerHTML = 'You already have an account, <a href="https://mattermost.fsinf.at/">please log in</a> (if you forgot your password, use the password recovery).';
-		} else {
-			errorDiv.textContent = error.message;
-		}
-	} else if (response.status == 201){
-		form.outerHTML = '<div id=success>Your account has created! Please confirm our email to ' + email + '.<br>'
-		+'If you haven\'t yet configured your email client, <a href="https://mail.student.tuwien.ac.at/webmail/">log in to Webmail</a> with username '+user+ ' and your TU password.</div>';
-	}
+document.getElementById('role').addEventListener('change', function (e) {
+    document.getElementById('viewdata').dataset.role = e.target.value;
+});
+
+document.getElementById('form-student').addEventListener("submit", async function(e){
+    e.preventDefault();
+    errorDiv.textContent = '';
+
+    let user = 'e' + document.getElementById('matrikel').value;
+    let email = user + '@student.tuwien.ac.at';
+    let response = await fetch('/api/users', {
+          method: 'POST',
+          headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+        body: JSON.stringify({
+            email: email,
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+        })
+    });
+    if (response.status == 400){
+        let error = await response.json();
+        if (error.id == 'store.sql_user.save.email_exists.app_error'){
+            errorDiv.innerHTML = 'You already have an account, <a href="https://mattermost.fsinf.at/">please log in</a> (if you forgot your password, use the password recovery).';
+        } else {
+            errorDiv.textContent = error.message;
+        }
+    } else if (response.status == 201){
+        document.getElementById('form-student').outerHTML = '<div id=success>Your account has created! Please confirm our email to ' + email + '.<br>'
+        +'If you haven\'t yet configured your email client, <a href="https://mail.student.tuwien.ac.at/webmail/">log in to Webmail</a> with username '+user+ ' and your TU password.</div>';
+    }
+}, false);
+
+document.getElementById('form-guest').addEventListener("submit", async function(e){
+    e.preventDefault();
+    errorDiv.textContent = '';
+    let email = document.getElementById('email').value;
+
+    let response = await fetch('/botapi/guest', {
+          method: 'POST',
+          headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+        body: JSON.stringify({
+            email: email
+        })
+    });
+    if (response.status == 400){
+        let error = await response.json();
+        if (error.id == 'store.sql_user.save.email_exists.app_error'){
+            errorDiv.innerHTML = 'You already have an account, <a href="https://mattermost.fsinf.at/">please log in</a> (if you forgot your password, use the password recovery).';
+        } else {
+            errorDiv.textContent = error.message;
+        }
+    } else if (response.status == 200){
+        document.getElementById('form-guest').outerHTML = '<div id=success>Your account has been created! Please complete the account creation by following steps in our email to ' + email + '.</div>';
+    }
 }, false);
 </script>
 </body>
