@@ -143,10 +143,10 @@ document.getElementById('form-student').addEventListener("submit", async functio
     let user = 'e' + document.getElementById('matrikel').value;
     let email = user + '@student.tuwien.ac.at';
     let response = await fetch('/api/users', {
-          method: 'POST',
-          headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
-                },
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             email: email,
             username: document.getElementById('username').value,
@@ -172,10 +172,10 @@ document.getElementById('form-guest').addEventListener("submit", async function(
     let email = document.getElementById('email').value;
 
     let response = await fetch('/api/bot/guest', {
-          method: 'POST',
-          headers: {
-                  'Content-Type': 'application/json;charset=utf-8'
-                },
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             email: email
         })
