@@ -171,7 +171,7 @@ document.getElementById('form-guest').addEventListener("submit", async function(
     errorDiv.textContent = '';
     let email = document.getElementById('email').value;
 
-    let response = await fetch('/botapi/guest', {
+    let response = await fetch('/api/bot/guest', {
           method: 'POST',
           headers: {
                   'Content-Type': 'application/json;charset=utf-8'
@@ -191,6 +191,12 @@ document.getElementById('form-guest').addEventListener("submit", async function(
         document.getElementById('form-guest').outerHTML = '<div id=success>Your account has been created! Please complete the account creation by following steps in our email to ' + email + '.</div>';
     }
 }, false);
+
+if(window.location.hash == "#guest") {
+    document.getElementById("role").value="guest";
+    document.getElementById('viewdata').dataset.role = "guest";
+    document.forms["form-guest"].submit();
+}
 </script>
 </body>
 </html>
